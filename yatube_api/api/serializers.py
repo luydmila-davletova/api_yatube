@@ -12,7 +12,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         fields = ('id', 'text', 'author', 'pub_date')
-        read_only_fields = ('author', 'pub_date', 'author')
+        read_only_fields = ('author', 'pub_date',)
         model = Post
 
 
@@ -28,10 +28,8 @@ class CommentSerializer(serializers.ModelSerializer):
         slug_field='username',
         read_only=True,
     )
-    post = serializers.PrimaryKeyRelatedField(
-        read_only=True)
 
     class Meta:
         fields = ('id', 'author', 'post', 'text', 'created',)
-        read_only_fields = ('id', 'author', 'created',)
+        read_only_fields = ('id', 'author', 'created', 'post')
         model = Comment
